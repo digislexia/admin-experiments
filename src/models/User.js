@@ -42,7 +42,4 @@ User.actions = {
     }
 };
 
-const user = new User({id: 6});
-user.blockUser();
-
 export default User;
