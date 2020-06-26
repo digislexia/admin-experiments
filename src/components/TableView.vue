@@ -1,16 +1,15 @@
 <template>
     <table>
-        <tr v-for="(dataEntity, index) in preparedData" :key="index">
+        <tr v-for="(dataEntity, index) in data" :key="index">
             <td v-for="(field, fieldIndex) in entity.fields" :key="fieldIndex">
                 <component
                         :is="field.tableComponent"
                         :value="dataEntity[fieldIndex]"
-                        @input="updateField(fieldIndex, $event)"
+                        @input="updateField(index, fieldIndex, $event)"
                 ></component>
             </td>
             <td v-for="(action, actionIndex) in entity.actions" :key="actionIndex">
-                {{ dataEntity.id }}
-                <button type="button" @click="dataEntity.blockUser"> {{ action.title }} </button>
+                <button type="button" @click="dataEntity[action.handler]()"> {{ action.title }} </button>
             </td>
         </tr>
     </table>
@@ -31,18 +30,11 @@
             },
         },
         methods: {
-            updateField(field, value) {
+            updateField(index, field, value) {
                 console.log('updateField', field, value);
-
+                this.data[index][field] = value;
             }
         },
-        computed: {
-            preparedData() {
-                return this.data.map((dataEntity) => {
-                   return new this.entity(dataEntity);
-                });
-            }
-        }
     }
 </script>
 

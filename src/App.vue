@@ -5,20 +5,26 @@
 </template>
 
 <script>
-import TableView from "@/components/TableView";
-import User from "@/models/User";
+  import TableView from "@/components/TableView";
+  import User from "@/models/User";
 
-export default {
+  export default {
   name: 'App',
   components: {TableView},
   data() {
     return {
       User,
-      data: [
-        {id: 1, email: 'mail1@domain.com'},
-        {id: 2, email: 'mail2@domain.com'},
-      ]
+      data: null
     };
+  },
+  mounted() {
+    const fromServer = [
+      {id: 1, email: 'mail1@domain.com'},
+      {id: 2, email: 'mail2@domain.com'},
+    ];
+    this.data = fromServer.map((dataEntity) => {
+      return new User(dataEntity);
+    });
   }
 }
 </script>

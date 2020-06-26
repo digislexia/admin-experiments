@@ -1,6 +1,12 @@
 // Тип - это может быть поле или связь
 // fields: { ... }, relations: { ... }, actions { ... }
 
+/*
+    TODO:
+     Детальный вывод
+     Обработка связей
+ */
+
 import Order from "@/models/Order";
 import TextInput from "@/components/TextInput";
 
@@ -10,7 +16,6 @@ class User {
         Object.assign(this, fields);
     }
     blockUser() {
-        console.log(this);
         console.log(`blockUser ${this.id}`);
     }
 }
