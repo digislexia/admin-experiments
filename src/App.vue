@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <table-view :entity="User" :data="data"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import TableView from "@/components/TableView";
+import User from "@/models/User";
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  components: {TableView},
+  data() {
+    return {
+      User,
+      data: [
+        {id: 1, email: 'mail1@domain.com'},
+        {id: 2, email: 'mail2@domain.com'},
+      ]
+    };
   }
 }
 </script>
 
 <style>
+body {
+  margin: 0;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+table {
+  border: 1px solid black;
 }
 </style>
